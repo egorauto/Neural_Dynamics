@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1574111689 "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf" "HW3" 1574111690
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux" 1574111690 8 a94a2480d3289e625eea47cd1b285758 ""
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" 1574111688 5587 80ce234ca1814e40a0d7540c8beaa88b ""
+["pdflatex"] 1574118112 "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf" "HW3" 1574118114
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux" 1574118113 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" 1574118112 7937 58ad2e1cb66738ba1f9e613fda6e11c3 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -175,11 +175,12 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1512586443 4129592 1984d35858a701202710d18812ea1ca5 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "HW3.aux" 1574111690 8 a94a2480d3289e625eea47cd1b285758 ""
-  "HW3.tex" 1574111688 5587 80ce234ca1814e40a0d7540c8beaa88b ""
+  "Figures/circuit.png" 1574115885 181974 feadcfd97a3889aab2f9be524539d0d4 ""
+  "HW3.aux" 1574118113 8 a94a2480d3289e625eea47cd1b285758 ""
+  "HW3.tex" 1574118112 7937 58ad2e1cb66738ba1f9e613fda6e11c3 ""
   (generated)
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.log"
-  "HW3.pdf"
+  "HW3.log"
   "HW3.aux"
   "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf"
-  "HW3.log"
+  "HW3.pdf"
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.log"

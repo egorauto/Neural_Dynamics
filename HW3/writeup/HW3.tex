@@ -4,6 +4,7 @@
 \usepackage{fancyhdr}
 \usepackage{circuitikz}
 \usepackage{graphicx}
+\graphicspath{ {./Figures/} }
 \usepackage{amsmath}
 \usepackage{ragged2e}
 \usepackage{subcaption} 
@@ -79,13 +80,52 @@
     \item[2.2] To find the required diameters, we can use the formula for electrotonic lenghts which must hold if we are to simplify this two-branch model.
     The formula appears below  
     $$L_{i} = \frac{l_{i}}{\lambda_{i}} = \frac{l_{j}}{\lambda_{j}} = L_{j} \quad \text{for} \; i, j > 1$$
-    Hence, using our definition above and plugging in the numbers gives us
-    $$\frac{100\cdot 10^{-6}}{\frac{\sqrt{d_{3}}}{2}} = 0.14 \, \text{m}$$
+    This can be simplified to (e.g for $i=2$ and $j=3$)
+    \begin{align*}
+        \frac{l_{2}}{\lambda_{2}} &= \frac{l_{3}}{\lambda_{3}}\\
+        \implies \lambda_{3} &= \frac{l_{3}\lambda_{2}}{l_{2}}\\
+        \implies \sqrt{d_{3}} &= \frac{l_{3}\sqrt{d_{2}}}{l_{2}}\\
+        \implies d_{3} &= d_{2}\left(\frac{l_{3}}{l_{2}}\right)^{2}
+    \end{align*}
+    Hence, plugging in the numbers gives us
     $$d_{3} = 2.04 \, \mu \text{m}$$
     Then applying the '3/2 rule' gives us
-    $$d_{2} = (d_{1}^{\frac{3}{2}} + d_{3}^{\frac{3}{2}})^{\frac{2}{3}} = 4.92 \, \mu \text{m}$$
-    As regards the length of the equivalent cylinder, 
+    $$d_{1} = (d_{2}^{\frac{3}{2}} + d_{3}^{\frac{3}{2}})^{\frac{2}{3}} = 4.92 \, \mu \text{m}$$
+    As regards the length and the diameter of the equivalent cylinder, the entire tree can be modelled by a single cylinder of 
+    diameter $d_{1}$, length constant $\lambda_{1}$ and $l_{e} = (L_{1} + L_{D})\lambda_{1}$, where
+    $L_{D} = L_{2} = L_{3}$. Thus,
+    $$l_{e} = l_{1} + l_{2}\left(\sqrt{\frac{d_{1}}{d_{2}}}\right) = 415.3 \, \mu \text{m}$$
+    \item[2.3] By applying the same two conditions as above, we have
+    \begin{align*} 
+    d_{3} &= d_{2}\left(\frac{l_{3}}{l_{2}}\right)^{2}\\
+    d_{4} &= d_{2}\left(\frac{l_{4}}{l_{2}}\right)^{2} \qquad \text{(Generalisation of the 3/2 rule)}
+    \end{align*}
+    Hence, we arrive at
+    \begin{align*}
+        d_{1} &= d_{2}\left(1 + \left(\frac{l_{3}}{l_{2}}\right)^{3} + \left(\frac{l_{4}}{l_{2}}\right)^{3}\right)^{\frac{2}{3}}\\
+        \implies d_{2} &= \frac{d_{1}}{\left(1 + \left(\frac{l_{3}}{l_{2}}\right)^{3} + \left(\frac{l_{4}}{l_{2}}\right)^{3}\right)^{\frac{2}{3}}}\\
+        \implies d_{2} &= 10.78 \mu m\\
+    \end{align*}
+    We can now solve for the other diameters by the above formulae
+    \begin{align*}
+        d_{3} &= 10.78\left(\frac{100}{150}\right)^{2} = 4.79 \mu m\\
+        d_{4} &= 10.78\left(\frac{120}{150}\right)^{2} = 6.90 \mu m\\
+    \end{align*}
+    The diameter of the equivalent cylinder will similarly be $d_{1}$ and the length can be determined as in 2.2
+    $$l_{e} = l_{1} + l_{2}\left(\sqrt{\frac{d_{1}}{d_{2}}}\right) = 392.74 \, \mu \text{m}$$
+\end{enumerate}
 
-
+\noindent\textbf{Question 3. Simulation of a two-compartment model of the passive membrane}
+\begin{enumerate}
+\item[3.1]
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.7\textwidth]{circuit.png}
+\end{figure}
+According to the Kirchoff's law, total current leaving a node must be equal to the total current entering a node. For the compartment 
+on the left hand side (let us call it compartment 1), we have 
+$$\frac{V_{1}(t) - V_{2}(t)}{R_{a}} = C_{m}\frac{dV_{2}(t)}{dt} + \frac{V_{2}(t)-E_{m}}{R_m}$$
+Similarly, for compartment 2 we have
+$$I_{e}(t) = C_{m}\frac{dV_{1}(t)}{dt} + \frac{V_{1}(t)-E_{m}}{R_m} + \frac{V_{1}(t) - V_{2}(t)}{R_{a}}$$
 \end{enumerate}
 \end{document}
