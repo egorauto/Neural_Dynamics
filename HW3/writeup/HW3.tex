@@ -1,0 +1,88 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{circuitikz}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{subcaption} 
+\usepackage{float}
+\usepackage{cancel}
+\usepackage{siunitx}
+\pagestyle{fancy}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\headheight}{15 pt}
+\lhead{Georgy Antonov}
+\chead{HW 3}
+\rhead{Neural Dynamics}
+
+\begin{document}\noindent
+
+
+\noindent\textbf{Question 1. Branching}
+\begin{enumerate}
+    \item[1.0] For the killed end (Dirichlet) boundary condition, we have
+    $$R_{in} =  R_{\infty} \text{tanh}(L)$$
+    where $R_{\infty}$ is the input resistance for a semi-infinite cable given by
+    $$R_{\infty} = \sqrt{\frac{4\tilde{r}_{m}\tilde{r}_{a}}{\pi^{2}d^{3}}}$$
+    and L is the electrotonic length given by 
+    $$L = \frac{l}{\lambda}$$
+    where $\lambda$ is the length constant defined as
+    $$\lambda = \sqrt{\frac{4\tilde{r}_{m}d}{4\tilde{r}_{a}}}$$
+    $\tilde{r}_{m}$ and $\tilde{r}_{a}$ are the specific membrane and axial resistances, respectively. Hence, for the input resistance for compartment 2 we have
+    $$R_{in,2} = \sqrt{\frac{4\cdot 1\cdot 1}{\pi^{2}\left(5\cdot 10^{-6}\right)^{3}}}\cdot \text{tanh}\left(0.089\right) = 5.05 \, \text{M\si{\ohm}}$$
+    For the sealed end (Neumann) we have
+    $$R_{in} =  R_{\infty} \text{coth}(L)$$
+    Acccordingly, for compartment 3 we have
+    $$R_{in,3} = \sqrt{\frac{4\cdot 1\cdot 1}{\pi^{2}\left(4\cdot 10^{-6}\right)^{3}}}\cdot \text{coth}\left(0.1\right) = 798.45 \, \text{M\si{\ohm}}$$
+    Note the following relationship
+    $$R_{L,1}^{-1} = \left(R_{in,2}^{-1} + R_{in,3}^{-1}\right)$$
+    Therefore, the leak resistance for compartment 1 is
+    $$R_{L,1} = \left(\left(5.05\cdot 10^{6}\right)^{-1} + \left(798.45\cdot 10^{6}\right)^{-1}\right)^{-1} = 5.02 \, \mu \text{\si{\ohm}}$$
+    \item[1.1] To compute the potential $V(\infty)$ in response to a constant current $I_{0}=1 \, \text{nA}$ we need to assume that the system has relaxed to a stationary solution and apply the formula for a finite cable potential as shown below
+    $$V(X) = E_{m} + R_{\infty}I_{0}\frac{R_{L}\text{cosh}\left(L-X\right) + R_{\infty}\text{sinh}\left(L-X\right)}{R_{L}\text{sinh}\left(L\right) + R_{\infty}\text{cosh}\left(L\right)}$$
+    where $R_{\infty}$ for compartment 1 is computed as shown above and X is defined as 
+    $$X = \frac{x}{\lambda}$$
+    where x is the distance along the compartment. Thus, plugging in the numbers and setting $t=\infty$ and $x=0$ gives
+    $$X(\infty) = 6.388 \, \text{mV}$$
+    From this we can compute the input resistance $R_{in, 1}$
+    $$R_{in, 1} = \frac{6.338\cdot 10^{-3}}{10^{-9}} = 6.388 \, \text{M \si{\ohm}}$$
+    \item[1.2] To get the current entering compartments 2 \& 3, $I_{L}$, we compute
+    $$V(X=L) = E_{m} + R_{\infty}I_{0}\frac{R_{L}\text{cosh}\left(0\right) + R_{\infty}\text{sinh}\left(0\right)}{R_{L}\text{sinh}\left(L\right) + R_{\infty}\text{cosh}\left(L\right)} = 4.993\cdot 10^{-15} \, \text{A}$$
+    And the corresponsing $I_L$ is then
+    $$I_L = \frac{V(L)}{R_{L}} = 0.995 \, \text{nA}$$
+    Then we apply the current divider formula for resistors connected in parallel
+    $$I_{X} = \frac{R_{T}}{R_{X} + R_{T}}I_{T}$$
+    Where $I_{X}$ is the current through the resistor with resistance $R_{X}$, and $I_{T}$ and $R_{T}$ are the total current entering and the total resistance in parallel, respectively.
+    Thus, by substituting the values we get\\
+    $$I_{2} = 9.883 \, \text{nA} \; \text{, and} \; I_{3} = 0.0625 \, \text{nA}$$
+    \item[1.3] Assuming that compartment 2 is terminated by a sealed end will change its input resistance and, consequently, the leak resistance for compartment 1. The new input resistance for compartment 2 is thus
+    $$R_{in,2} = \sqrt{\frac{4\cdot 1\cdot 1}{\pi^{2}\left(5\cdot 10^{-6}\right)^{3}}}\cdot \text{coth}\left(0.089\right) = 641.46 \, \text{M\si{\ohm}}$$
+    Hence, $R_{L, 1}$ becomes
+    $$R_{L,1} = \left(\left(641.46\cdot 10^{6}\right)^{-1} + \left(798.45\cdot 10^{6}\right)^{-1}\right)^{-1} = 355.70 \, \text{M\si{\ohm}}$$
+    And by applying the above formula for $V(\infty)$ we get 
+    $$V(\infty) = 104 \, \text{mV}$$
+\end{enumerate}
+
+\noindent\textbf{Question 2. Equivalent Cylinder}
+\begin{enumerate}
+    \item[2.1] No, this branching model cannot be simplified by an equivalent cylinnder model, for the branching compartments do not follow the 
+    '$\frac{3}{2}$ diameter rule', which must satisfy 
+    $$(d_{1})^{\frac{3}{2}} = (d_{2})^{\frac{3}{2}} + (d_{3})^{\frac{3}{2}}$$
+    where $d_{1}$, $d_{2}$, and $d_{3}$ are the corresponding compartment diameters.
+    \item[2.2] To find the required diameters, we can use the formula for electrotonic lenghts which must hold if we are to simplify this two-branch model.
+    The formula appears below  
+    $$L_{i} = \frac{l_{i}}{\lambda_{i}} = \frac{l_{j}}{\lambda_{j}} = L_{j} \quad \text{for} \; i, j > 1$$
+    Hence, using our definition above and plugging in the numbers gives us
+    $$\frac{260\cdot 10^{-6}}{\frac{\sqrt{d_{1}}}{2}} = \frac{100\cdot 10^{-6}}{\frac{\sqrt{d_{3}}}{2}} = 0.14 \, \mu \text{m}$$
+    $$d_{1} = 13.8 \, \mu \text{m} \; \text{, and} \; d_{3} = 2.04 \, \mu \text{m}$$
+
+
+\end{enumerate}
+\end{document}
