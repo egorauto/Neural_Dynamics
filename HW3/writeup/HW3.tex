@@ -34,7 +34,7 @@
     and L is the electrotonic length given by 
     $$L = \frac{l}{\lambda}$$
     where $\lambda$ is the length constant defined as
-    $$\lambda = \sqrt{\frac{4\tilde{r}_{m}d}{4\tilde{r}_{a}}}$$
+    $$\lambda = \sqrt{\frac{\tilde{r}_{m}d}{4\tilde{r}_{a}}}$$
     $\tilde{r}_{m}$ and $\tilde{r}_{a}$ are the specific membrane and axial resistances, respectively. Hence, for the input resistance for compartment 2 we have
     $$R_{in,2} = \sqrt{\frac{4\cdot 1\cdot 1}{\pi^{2}\left(5\cdot 10^{-6}\right)^{3}}}\cdot \text{tanh}\left(0.089\right) = 5.05 \, \text{M\si{\ohm}}$$
     For the sealed end (Neumann) we have
@@ -72,16 +72,19 @@
 
 \noindent\textbf{Question 2. Equivalent Cylinder}
 \begin{enumerate}
-    \item[2.1] No, this branching model cannot be simplified by an equivalent cylinnder model, for the branching compartments do not follow the 
-    '$\frac{3}{2}$ diameter rule', which must satisfy 
+    \item[2.1] No, this branching model cannot be simplified by an equivalent cylinder model, for the branching compartments do not follow the 
+    '3/2 diameter rule', which must satisfy 
     $$(d_{1})^{\frac{3}{2}} = (d_{2})^{\frac{3}{2}} + (d_{3})^{\frac{3}{2}}$$
     where $d_{1}$, $d_{2}$, and $d_{3}$ are the corresponding compartment diameters.
     \item[2.2] To find the required diameters, we can use the formula for electrotonic lenghts which must hold if we are to simplify this two-branch model.
     The formula appears below  
     $$L_{i} = \frac{l_{i}}{\lambda_{i}} = \frac{l_{j}}{\lambda_{j}} = L_{j} \quad \text{for} \; i, j > 1$$
     Hence, using our definition above and plugging in the numbers gives us
-    $$\frac{260\cdot 10^{-6}}{\frac{\sqrt{d_{1}}}{2}} = \frac{100\cdot 10^{-6}}{\frac{\sqrt{d_{3}}}{2}} = 0.14 \, \mu \text{m}$$
-    $$d_{1} = 13.8 \, \mu \text{m} \; \text{, and} \; d_{3} = 2.04 \, \mu \text{m}$$
+    $$\frac{100\cdot 10^{-6}}{\frac{\sqrt{d_{3}}}{2}} = 0.14 \, \text{m}$$
+    $$d_{3} = 2.04 \, \mu \text{m}$$
+    Then applying the '3/2 rule' gives us
+    $$d_{2} = (d_{1}^{\frac{3}{2}} + d_{3}^{\frac{3}{2}})^{\frac{2}{3}} = 4.92 \, \mu \text{m}$$
+    As regards the length of the equivalent cylinder, 
 
 
 \end{enumerate}
