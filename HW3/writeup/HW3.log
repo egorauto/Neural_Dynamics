@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.6)  19 NOV 2019 00:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.6)  19 NOV 2019 17:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -838,20 +838,66 @@ File: ./Figures/circuit.png Graphic file (type png)
  <use ./Figures/circuit.png>
 Package pdftex.def Info: ./Figures/circuit.png used on input line 123.
 (pdftex.def)             Requested size: 328.82707pt x 168.86594pt.
- [4 <./Figures/circuit.png>] [5] (/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux) ) 
+ [4 <./Figures/circuit.png>] <./Figures/Ra_7M.png, id=30, 939.51pt x 505.89pt>
+File: ./Figures/Ra_7M.png Graphic file (type png)
+ <use ./Figures/Ra_7M.png>
+Package pdftex.def Info: ./Figures/Ra_7M.png used on input line 159.
+(pdftex.def)             Requested size: 469.75502pt x 252.94437pt.
+ <./Figures/Ra_265M.png, id=31, 939.51pt x 505.89pt>
+File: ./Figures/Ra_265M.png Graphic file (type png)
+ <use ./Figures/Ra_265M.png>
+Package pdftex.def Info: ./Figures/Ra_265M.png used on input line 166.
+(pdftex.def)             Requested size: 469.75502pt x 252.94437pt.
+ <./Figures/Ra_30G.png, id=32, 939.51pt x 505.89pt>
+File: ./Figures/Ra_30G.png Graphic file (type png)
+ <use ./Figures/Ra_30G.png>
+Package pdftex.def Info: ./Figures/Ra_30G.png used on input line 171.
+(pdftex.def)             Requested size: 469.75502pt x 252.94437pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<./Figures/Sin_Ra_300M.png, id=33, 939.51pt x 505.89pt>
+File: ./Figures/Sin_Ra_300M.png Graphic file (type png)
+ <use ./Figures/Sin_Ra_300M.png>
+Package pdftex.def Info: ./Figures/Sin_Ra_300M.png used on input line 181.
+(pdftex.def)             Requested size: 469.75502pt x 252.94437pt.
+ <./Figures/Bode.png, id=34, 578.16pt x 578.16pt>
+File: ./Figures/Bode.png Graphic file (type png)
+ <use ./Figures/Bode.png>
+Package pdftex.def Info: ./Figures/Bode.png used on input line 186.
+(pdftex.def)             Requested size: 469.75502pt x 469.75385pt.
+
+Overfull \hbox (14.01488pt too wide) in paragraph at lines 176--189
+[]\OT1/cmr/m/n/12 Finally, the model was sim-u-lated with an in-jected si-nu-soid cur-rent $\OML/cmm/m/it/12 I[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = 100\OML/cmm/m/it/12 pAsin\OT1/cmr/m/n/12 (2\OML/cmm/m/it/12 ^^Yft\OT1/cmr/m/n/12 )$
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[5] [6 <./Figures/Ra_7M.png> <./Figures/Ra_265M.png>] [7 <./Figures/Ra_30G.png> <./Figures/Sin_Ra_300M.png>] [8 <./Figures/Bode.png>] (/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux) ) 
 Here is how much of TeX's memory you used:
- 31330 strings out of 492995
- 709479 string characters out of 6132704
- 804358 words of memory out of 5000000
- 34502 multiletter control sequences out of 15000+600000
+ 31357 strings out of 492995
+ 710063 string characters out of 6132704
+ 807360 words of memory out of 5000000
+ 34524 multiletter control sequences out of 15000+600000
  11117 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,12n,56p,10409b,923s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf (5 pages, 259105 bytes).
+ 62i,18n,56p,10409b,1193s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on /Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf (8 pages, 502176 bytes).
 PDF statistics:
- 62 PDF objects out of 1000 (max. 8388607)
- 43 compressed objects within 1 object stream
+ 87 PDF objects out of 1000 (max. 8388607)
+ 54 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

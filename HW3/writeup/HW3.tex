@@ -131,9 +131,60 @@ on the left hand side (let us call it compartment 2), we have
 \end{align*}
 Similarly, for compartment 1 we have
 \begin{align*}
-I_{e}(t) &= C_{m}\frac{dV_{1}(t)}{dt} + \frac{V_{1}(t)-E_{m}}{R_m} + \frac{V_{1}(t) - V_{2}(t)}{R_{a}}\\
-\implies C_{m}\frac{dV_{1}(t)}{dt} &= \frac{E_{m} - V_{1}(t)}{R_m} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}} + I_{e}(t)\\
-\implies \frac{dV_{1}(t)}{dt} &= \frac{E_{m} - V_{1}(t)}{\tau_{m}} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}C_{m}} + I_{e}(t)\frac{1}{C_{m}}\\
+    I_{e}(t) &= C_{m}\frac{dV_{1}(t)}{dt} + \frac{V_{1}(t)-E_{m}}{R_m} + \frac{V_{1}(t) - V_{2}(t)}{R_{a}}\\
+    \implies C_{m}\frac{dV_{1}(t)}{dt} &= \frac{E_{m} - V_{1}(t)}{R_m} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}} + I_{e}(t)\\
+    \implies \frac{dV_{1}(t)}{dt} &= \frac{E_{m} - V_{1}(t)}{\tau_{m}} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}C_{m}} + I_{e}(t)\frac{1}{C_{m}}\\
 \end{align*}
+We can now approximate both with the forward Euler method 
+$$\frac{dV}{dt} \approx \frac{V(t+\Delta t)-V(t)}{\Delta t}$$
+Hence, solving for both $V_{1}(t + \Delta t)$ and $V_{2}(t + \Delta t)$ we get
+\begin{align*}
+    V_{1}(t+\Delta t) &=  V_{1}(t) + \Delta t\left(\frac{E_{m} - V_{1}(t)}{\tau_{m}} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}C_{m}} + I_{e}(t)\frac{1}{C_{m}}\right)\\
+    V_{2}(t+\Delta t) &=  V_{2}(t) + \Delta t\left(\frac{V_{1}(t) - V_{2}(t)}{R_{a}C_{m}} + \frac{E_{m} - V_{2}(t)}{\tau_{m}}\right)\\
+\end{align*}
+\item[3.2] Next, I simulated the response of this two-compartment model to the current 
+\[
+    I_{e}(t)= 
+\begin{cases}
+    0, & t < t_{e}\\
+    -100 \, \text{pA} ,              & t_{e} \leqslant t < t_{s}\\
+    0, & t_{s} \leqslant t\\
+\end{cases}
+\]
+where $t_{e} = 0.4 \, \text{s}$ and $t_{s} = 0.44 \, \text{s}$ with $E_{m} = 0 \, \text{V}$, $R_{m} = 265 \, \text{M\si{\ohm}}$, $R_{a} = 7 \, \text{M\si{\ohm}}$. I also 
+assumed that the initial conditions were $V_{1}(t) = 0$ and $V_{2}(t) = 0$. 
+The results appear in Figure 1.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Ra_7M.png}
+    \caption{Voltage resposes for compartments 1 and 2 with $R_{a} = 7 \, \text{M\si{\ohm}}$.}
+\end{figure}
+Wtih increasing the axial resistance, $R_{a}$, the 'responsiveness' of compartment 2 gradually decreased, as
+can be seen in Figures 2 and 3.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Ra_265M.png}
+    \caption{Voltage resposes for compartments 1 and 2 with $R_{a} = 265 \, \text{M\si{\ohm}}$.}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Ra_30G.png}
+    \caption{Voltage resposes for compartments 1 and 2 with $R_{a} = 30 \, \text{G\si{\ohm}}$.}
+\end{figure}
+As can be seen from Figure 3, compartment 2 has no response at all to the current injected in compartment 1,
+for the axial resistance is so high ($R_{a} = 30 \, \text{G\si{\ohm}}$) it never reaches it.
+\item[3.3] Finally, the model was simulated with an injected sinusoid current $I_{e}(t) = 100pAsin(2\pi ft)$ with 
+all the previous parameters and $R_{a} = 300 \, \text{M\si{\ohm}}$. An example response for $f=20 \, \text{Hz}$ is shown in Figure 4 
+and the resultant Bode diagram appears in Figure 5.
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Sin_Ra_300M.png}
+    \caption{Voltage resposes for compartments 1 and 2 for a sinusoid current.}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{Bode.png}
+    \caption{Stationary log-voltage resposes for compartments 1 and 2 for different log-frequencies of the injected current.}
+\end{figure}
 \end{enumerate}
 \end{document}

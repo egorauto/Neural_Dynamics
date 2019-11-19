@@ -267,6 +267,21 @@ INPUT /usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map
 INPUT /Users/GA/Neural_Dynamics/HW3/writeup/./Figures/circuit.png
 INPUT ./Figures/circuit.png
 INPUT ./Figures/circuit.png
+INPUT /Users/GA/Neural_Dynamics/HW3/writeup/./Figures/Ra_7M.png
+INPUT ./Figures/Ra_7M.png
+INPUT ./Figures/Ra_7M.png
+INPUT /Users/GA/Neural_Dynamics/HW3/writeup/./Figures/Ra_265M.png
+INPUT ./Figures/Ra_265M.png
+INPUT ./Figures/Ra_265M.png
+INPUT /Users/GA/Neural_Dynamics/HW3/writeup/./Figures/Ra_30G.png
+INPUT ./Figures/Ra_30G.png
+INPUT ./Figures/Ra_30G.png
+INPUT /Users/GA/Neural_Dynamics/HW3/writeup/./Figures/Sin_Ra_300M.png
+INPUT ./Figures/Sin_Ra_300M.png
+INPUT ./Figures/Sin_Ra_300M.png
+INPUT /Users/GA/Neural_Dynamics/HW3/writeup/./Figures/Bode.png
+INPUT ./Figures/Bode.png
+INPUT ./Figures/Bode.png
 INPUT /Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
@@ -277,3 +292,4 @@ INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
+INPUT /usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
