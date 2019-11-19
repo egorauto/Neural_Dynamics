@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1574181889 "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf" "HW3" 1574181891
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux" 1574181891 949 958a1998aea713aa497cfaeaae60cf63 ""
+["pdflatex"] 1574203998 "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf" "HW3" 1574204000
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux" 1574204000 949 958a1998aea713aa497cfaeaae60cf63 ""
   "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" 1574181887 11160 ff514677ee41d54cc2c1dab3672abb3a ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
@@ -176,17 +176,17 @@
   "/usr/local/texlive/2017/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1495593472 2350277 a699055bee05bf8a40b0504752487295 ""
   "/usr/local/texlive/2017/texmf-var/web2c/pdftex/pdflatex.fmt" 1512586443 4129592 1984d35858a701202710d18812ea1ca5 ""
   "/usr/local/texlive/2017/texmf.cnf" 1495593465 577 2b71d4d888f9e5560b2e99985915a9fa ""
-  "Figures/Bode.png" 1574181801 37649 0cd7f3903f73f9e4c6b90f76167b0cf0 ""
-  "Figures/Ra_265M.png" 1574175764 31966 69082111661ae49f6b6d7a216c67bf33 ""
-  "Figures/Ra_30G.png" 1574175801 31534 b44ba465336a4a5c39532d0750eda600 ""
-  "Figures/Ra_7M.png" 1574175714 32301 7aa86a9e7d96e4db56ca84a4e41bad7e ""
-  "Figures/Sin_Ra_300M.png" 1574179446 111622 e521c41c5641960798b0c96ce8b7b6a9 ""
+  "Figures/Bode.png" 1574202753 36365 2a07ddd5ef6566f314f3510a39321d5c ""
+  "Figures/Ra_265M.png" 1574203827 31484 22d48384649b885df5f56e0041ba1d9a ""
+  "Figures/Ra_30G.png" 1574203854 31248 20abc403e6ea3c2ea519867a246e0595 ""
+  "Figures/Ra_7M.png" 1574203805 32424 0a64b3630245b4eb9e59112ba79e6b10 ""
+  "Figures/Sin_Ra_300M.png" 1574203910 141648 9edcef0f0f4f19e247e243422638b75f ""
   "Figures/circuit.png" 1574115885 181974 feadcfd97a3889aab2f9be524539d0d4 ""
-  "HW3.aux" 1574181891 949 958a1998aea713aa497cfaeaae60cf63 ""
+  "HW3.aux" 1574204000 949 958a1998aea713aa497cfaeaae60cf63 ""
   "HW3.tex" 1574181887 11160 ff514677ee41d54cc2c1dab3672abb3a ""
   (generated)
   "HW3.pdf"
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.log"
   "HW3.aux"
   "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf"
   "HW3.log"
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.log"
