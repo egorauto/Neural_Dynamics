@@ -122,10 +122,18 @@
     \centering
     \includegraphics[width=0.7\textwidth]{circuit.png}
 \end{figure}
-According to the Kirchoff's law, total current leaving a node must be equal to the total current entering a node. For the compartment 
-on the left hand side (let us call it compartment 1), we have 
-$$\frac{V_{1}(t) - V_{2}(t)}{R_{a}} = C_{m}\frac{dV_{2}(t)}{dt} + \frac{V_{2}(t)-E_{m}}{R_m}$$
-Similarly, for compartment 2 we have
-$$I_{e}(t) = C_{m}\frac{dV_{1}(t)}{dt} + \frac{V_{1}(t)-E_{m}}{R_m} + \frac{V_{1}(t) - V_{2}(t)}{R_{a}}$$
+According to the Kirchoff's law, total current leaving a node must be equal to total current entering a node. For the compartment 
+on the left hand side (let us call it compartment 2), we have 
+\begin{align*}
+    \frac{V_{1}(t) - V_{2}(t)}{R_{a}} &= C_{m}\frac{dV_{2}(t)}{dt} + \frac{V_{2}(t)-E_{m}}{R_m}\\
+    \implies C_{m}\frac{dV_{2}(t)}{dt} &= \frac{V_{1}(t) - V_{2}(t)}{R_{a}} + \frac{E_{m} - V_{2}(t)}{R_m}\\
+    \implies \frac{dV_{2}(t)}{dt} &= \frac{V_{1}(t) - V_{2}(t)}{R_{a}C_{m}} + \frac{E_{m} - V_{2}(t)}{\tau_{m}}\\
+\end{align*}
+Similarly, for compartment 1 we have
+\begin{align*}
+I_{e}(t) &= C_{m}\frac{dV_{1}(t)}{dt} + \frac{V_{1}(t)-E_{m}}{R_m} + \frac{V_{1}(t) - V_{2}(t)}{R_{a}}\\
+\implies C_{m}\frac{dV_{1}(t)}{dt} &= \frac{E_{m} - V_{1}(t)}{R_m} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}} + I_{e}(t)\\
+\implies \frac{dV_{1}(t)}{dt} &= \frac{E_{m} - V_{1}(t)}{\tau_{m}} + \frac{V_{2}(t) - V_{1}(t)}{R_{a}C_{m}} + I_{e}(t)\frac{1}{C_{m}}\\
+\end{align*}
 \end{enumerate}
 \end{document}

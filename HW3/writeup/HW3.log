@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.6)  19 NOV 2019 00:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.12.6)  19 NOV 2019 00:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -842,13 +842,13 @@ Package pdftex.def Info: ./Figures/circuit.png used on input line 123.
 Here is how much of TeX's memory you used:
  31330 strings out of 492995
  709479 string characters out of 6132704
- 804357 words of memory out of 5000000
+ 804358 words of memory out of 5000000
  34502 multiletter control sequences out of 15000+600000
  11117 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  62i,12n,56p,10409b,923s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on /Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf (5 pages, 258595 bytes).
+Output written on /Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf (5 pages, 259105 bytes).
 PDF statistics:
  62 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
