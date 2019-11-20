@@ -38,7 +38,7 @@
     $$\lambda = \sqrt{\frac{\tilde{r}_{m}d}{4\tilde{r}_{a}}}$$
     $\tilde{r}_{m}$ and $\tilde{r}_{a}$ are the specific membrane and axial resistances, respectively. Hence, for the input resistance for compartment 2 we have
     $$R_{in,2} = \sqrt{\frac{4\cdot 1\cdot 1}{\pi^{2}\left(5\cdot 10^{-6}\right)^{3}}}\cdot \text{tanh}\left(0.089\right) = 5.05 \, \text{M\si{\ohm}}$$
-    For the sealed end (Neumann) we have
+    For the sealed end (Neumann) boundary condition we have
     $$R_{in} =  R_{\infty} \text{coth}(L)$$
     Acccordingly, for compartment 3 we have
     $$R_{in,3} = \sqrt{\frac{4\cdot 1\cdot 1}{\pi^{2}\left(4\cdot 10^{-6}\right)^{3}}}\cdot \text{coth}\left(0.1\right) = 798.45 \, \text{M\si{\ohm}}$$
@@ -46,7 +46,7 @@
     $$R_{L,1}^{-1} = \left(R_{in,2}^{-1} + R_{in,3}^{-1}\right)$$
     Therefore, the leak resistance for compartment 1 is
     $$R_{L,1} = \left(\left(5.05\cdot 10^{6}\right)^{-1} + \left(798.45\cdot 10^{6}\right)^{-1}\right)^{-1} = 5.02 \, \mu \text{\si{\ohm}}$$
-    \item[1.1] To compute the potential $V(\infty)$ in response to a constant current $I_{0}=1 \, \text{nA}$ we need to assume that the system has relaxed to a stationary solution and apply the formula for a finite cable potential as shown below
+    \item[1.1] To compute the potential $V(\infty)$ in response to constant current $I_{0}=1 \, \text{nA}$ we need to assume that the system has relaxed to a stationary solution and apply the formula for a finite cable potential as shown below
     $$V(X) = E_{m} + R_{\infty}I_{0}\frac{R_{L}\text{cosh}\left(L-X\right) + R_{\infty}\text{sinh}\left(L-X\right)}{R_{L}\text{sinh}\left(L\right) + R_{\infty}\text{cosh}\left(L\right)}$$
     where $R_{\infty}$ for compartment 1 is computed as shown above and X is defined as 
     $$X = \frac{x}{\lambda}$$
@@ -60,7 +60,7 @@
     $$I_L = \frac{V(L)}{R_{L}} = 0.995 \, \text{nA}$$
     Then we apply the current divider formula for resistors connected in parallel
     $$I_{X} = \frac{R_{T}}{R_{X} + R_{T}}I_{T}$$
-    Where $I_{X}$ is the current through the resistor with resistance $R_{X}$, and $I_{T}$ and $R_{T}$ are the total current entering and the total resistance in parallel, respectively.
+    Where $I_{X}$ is the current flowing through the resistor with resistance $R_{X}$, and $I_{T}$ and $R_{T}$ are the total current entering and the total resistance in parallel, respectively.
     Thus, by substituting the values we get\\
     $$I_{2} = 9.883 \, \text{nA} \; \text{, and} \; I_{3} = 0.0625 \, \text{nA}$$
     \item[1.3] Assuming that compartment 2 is terminated by a sealed end will change its input resistance and, consequently, the leak resistance for compartment 1. The new input resistance for compartment 2 is thus
@@ -122,7 +122,7 @@
     \centering
     \includegraphics[width=0.7\textwidth]{circuit.png}
 \end{figure}
-According to the Kirchoff's law, total current leaving a node must be equal to total current entering a node. For the compartment 
+According to the Kirchoff's law, total current leaving a node must be equal to total current entering that node. For the compartment 
 on the left hand side (let us call it compartment 2), we have 
 \begin{align*}
     \frac{V_{1}(t) - V_{2}(t)}{R_{a}} &= C_{m}\frac{dV_{2}(t)}{dt} + \frac{V_{2}(t)-E_{m}}{R_m}\\
@@ -171,11 +171,12 @@ can be seen in Figures 2 and 3.
     \includegraphics[width=\textwidth]{Ra_30G.png}
     \caption{Voltage resposes for compartments 1 and 2 with $R_{a} = 30 \, \text{G\si{\ohm}}$.}
 \end{figure}
-As can be seen from Figure 3, compartment 2 has no response at all to the current injected in compartment 1,
-for the axial resistance is so high ($R_{a} = 30 \, \text{G\si{\ohm}}$) it never reaches it.
-\item[3.3] Finally, the model was simulated with an injected sinusoid current $I_{e}(t) = 100pAsin(2\pi ft)$ with 
-all the previous parameters and $R_{a} = 300 \, \text{M\si{\ohm}}$. An example response for $f=20 \, \text{Hz}$ is shown in Figure 4 
-and the resultant Bode diagram appears in Figure 5.
+Figure 3 shows voltage responses at $R_{a} = 30 \, \text{G\si{\ohm}}$. In this case, compartment 2 has no response at all,
+for the axial resistance is so high the current hardly ever reaches it.
+\item[3.3] Finally, the model was simulated for 2 seconds with injected sinusoid current $I_{e}(t) = 100\text{pAsin}(2\pi ft)$ having 
+all the parameters as before and $R_{a} = 300 \, \text{M\si{\ohm}}$. An example response for $f=20 \, \text{Hz}$ is shown in Figure 4 
+and the resultant Bode diagram for a range of frequencies appears in Figure 5. Amplitudes for the bode diagram were conputed after 1s of stimulation to 
+ensure the voltages have relaxed to sinusoidal output.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{Sin_Ra_300M.png}
@@ -184,7 +185,7 @@ and the resultant Bode diagram appears in Figure 5.
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{Bode.png}
-    \caption{Stationary log-voltage resposes for compartments 1 and 2 for different log-frequencies of the injected current.}
+    \caption{Stationary log-voltage resposes (after 1s) for compartments 1 and 2 for different log-frequencies of the injected current.}
 \end{figure}
 \end{enumerate}
 \end{document}

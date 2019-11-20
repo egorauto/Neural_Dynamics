@@ -1,7 +1,7 @@
 # Fdb version 3
-["pdflatex"] 1574203998 "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf" "HW3" 1574204000
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux" 1574204000 949 958a1998aea713aa497cfaeaae60cf63 ""
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" 1574181887 11160 ff514677ee41d54cc2c1dab3672abb3a ""
+["pdflatex"] 1574252475 "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf" "HW3" 1574252477
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.aux" 1574252477 960 b36356ff062c73cf0e7e20bbe04784f8 ""
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.tex" 1574252475 11369 4a8f7c161ac834da3702ad75fbf733db ""
   "/usr/local/texlive/2017/texmf-dist/fonts/map/fontname/texfonts.map" 1480098670 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2017/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -182,11 +182,11 @@
   "Figures/Ra_7M.png" 1574203805 32424 0a64b3630245b4eb9e59112ba79e6b10 ""
   "Figures/Sin_Ra_300M.png" 1574203910 141648 9edcef0f0f4f19e247e243422638b75f ""
   "Figures/circuit.png" 1574115885 181974 feadcfd97a3889aab2f9be524539d0d4 ""
-  "HW3.aux" 1574204000 949 958a1998aea713aa497cfaeaae60cf63 ""
-  "HW3.tex" 1574181887 11160 ff514677ee41d54cc2c1dab3672abb3a ""
+  "HW3.aux" 1574252477 960 b36356ff062c73cf0e7e20bbe04784f8 ""
+  "HW3.tex" 1574252475 11369 4a8f7c161ac834da3702ad75fbf733db ""
   (generated)
+  "HW3.log"
   "HW3.pdf"
   "HW3.aux"
-  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf"
-  "HW3.log"
   "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.log"
+  "/Users/GA/Neural_Dynamics/HW3/writeup/HW3.pdf"
