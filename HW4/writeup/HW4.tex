@@ -64,10 +64,15 @@
         \includegraphics[width=0.9\textwidth]{boundary.png}
         \caption{Boundary conditions for the terminal compartments.}
     \end{figure}
-    For the killed end (Dirichlet) boundary condition the neurite's intracellular environment is in contact with the extracellular medium, 
-    and hence the potential $V_{i}$ for that compartment is set to 0. For the sealed end (Neumann) boundary condition, we assume that the resistance 
+    For the killed end (Dirichlet) boundary condition, the neurite's intracellular environment is in contact with the extracellular medium, 
+    and hence the potential $V_{i}$ for that compartment is set to 0, for it is grounded. 
+    For the sealed end (Neumann) boundary condition, we assume that the resistance 
     is so high that no current can pass through the end. Since the axial current is proportional to the gradient of the membrane potential, no current 
     implies zero potential gradient.
+    \begin{align*}
+        \frac{V_{i+1} - V_{i}}{R_{a}} &= C_{m}\frac{dV_{i}}{dt} + \frac{V_{i} - E_{L}}{R_{m}}\\
+        \implies \frac{dV_{i}}{dt} &= \frac{E_{L} - V_{i}}{\tau_{m}} + \frac{V_{i+1} - V{i}}{C_{m}R_{a}}
+    \end{align*}
     \item[1.2] Equation \ref{eq1} can be approximated with the forward Euler method as shown below
     \begin{align*}
         \frac{V_{j}(t + \Delta t) - V_{j}(t)}{\Delta t} &= \frac{E_{L} - V_{j}(t)}{\tau_{m}} + \frac{1}{C_{m}}\left(\frac{V_{j+1}(t) - V_{j}(t)}{R_{a}} + \frac{V_{j-1}(t) - V_{j}(t)}{R_{a}}\right) + \frac{1}{C_{m}}I_{e, j}(t)
@@ -76,7 +81,7 @@
         \implies V_{j}(t + \Delta t) = V_{j}(t) &+ \Delta t \left( \frac{E_{L} - V_{j}(t)}{\tau_{m}} + \frac{1}{C_{m}} \left( \frac{V_{j+1}(t) - V_{j}(t)}{R_{a}} + \frac{V_{j-1}(t) - V_{j}(t)}{R_{a}}\right) \right)\\
         &+ \frac{\Delta t}{C_{m}}I_{e, j}(t)
     \end{align*}
-    Now, we simulate this with step current given below 
+    Now, we simulate this with the step current given below 
     \[
     I_{e}(j, t)= 
     \begin{cases}
@@ -92,5 +97,54 @@
         \item[c)] Axial resistance $R_{a} = 0.0318 \, \text{G\si{\ohm}}$
         \item[d)] $E_{L} = E_{m} = 0 \, \text{V}$
     \end{enumerate}
+    The results of the scenario mentioned above appear in Figure 3.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{Figures/fig1_3d.png}
+        \caption{Voltage response over time for 50 compartments.}
+    \end{figure}
+    \item[1.4] Next, the same multi-compartment model was simulated in response to the rectangular current input
+    \[
+        I_{e}(j, t)= 
+        \begin{cases}
+            0, & (t < t_{e}) \vee (t_{s} \leqslant t) \vee (j \neq j_{e})\\
+            I_{0}, & (t_{e} \leqslant t < t_{s}) \wedge (j = j_{e})\\
+        \end{cases}
+        \]
+    with $I_{0}=100 \, \text{pA}$, $j_{e}=14$, $t_{e}=20 \, \text{ms}$, and $t_{s}=200 \, \text{ms}$. The results can be seen in Figure 4.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.7\textwidth]{Figures/fig2_3d.png}
+        \caption{Voltage response over time for 50 compartments.}
+    \end{figure}
 \end{enumerate}
+
+\noindent\textbf{Question 2. Simulation of a single-compartment Hodgkin-Huxley model of an active neurite.}
+    \begin{enumerate}
+        \item[2.1]
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=1\textwidth]{Figures/Eqs.png}
+        \end{figure} 
+        The equations (3-12) give the Hodgkin-Huxley model of an imaginary single-compartment (i.e. no axial current) active neurite with input current $I_{e}(t)$.
+        The electric properties for this neurite are
+        \begin{itemize}
+            \item $C_{m}=1 \, \mu \text{F}$, membrane capacitance
+            \item $E_{Na}=115 \, \text{mV}$, sodium equilibrium potential
+            \item $E_{K}=-12 \, \text{mV}$, potassium equilibrium potential
+            \item $E_{L}=10.6 \, \text{mV}$, leak equilibrium potential
+            \item $V(0)=0 \, \text{mV}$, initial membrane potential
+            \item $\bar{g}_{Na}=120 \, \text{ms}$, maximum sodium channel conductance
+            \item $\bar{g}_{K}=36 \, \text{ms}$, maximum potassium channel conductance
+            \item $\bar{g}_{L}=0.3 \, \text{ms}$, maximum leak conductance
+        \end{itemize}
+        To approximate the given DEQs we will use the Forward Euler method
+        \begin{align*}
+            V(t + \Delta t) &= V(t) + \frac{\Delta t}{C_{m}}\left(I_{e}(t) - \bar{g}_{L}\left(V(t)-E_{L}\right) - \bar{g}_{Na}m^{3}h\left(V(t)-E_{Na}\right) - \bar{g}_{K}n^{4}\left(V(t)-E_{K}\right)\right)\\
+            m(t + \Delta t) &= m(t) + \Delta t\left(\alpha_{m}\left(1-m\right)-\beta_{m}m\right)\\
+            h(t + \Delta t) &= h(t) + \Delta t\left(\alpha_{h}\left(1-h\right)-\beta_{h}h\right)\\
+            n(t + \Delta t) &= n(t) + \Delta t\left(\alpha_{n}\left(1-n\right)-\beta_{n}n\right)\\
+        \end{align*}
+        Now, we implement this model with an input current $I_{e}(t)$.
+    \end{enumerate}
 \end{document}
