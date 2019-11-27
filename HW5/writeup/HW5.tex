@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{circuitikz}
+\usepackage{graphicx}
+\graphicspath{ {./Figures/} }
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{subcaption} 
+\usepackage{float}
+\usepackage{cancel}
+\usepackage{siunitx}
+\pagestyle{fancy}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\headheight}{15 pt}
+\lhead{Georgy Antonov}
+\chead{HW 3}
+\rhead{Neural Dynamics}
+
+\begin{document}\noindent
+
+
+\noindent\textbf{Question 1. Simulation of a multi-compartment Hodgkin-Huxley model.}
+\begin{enumerate}
+    \item[1.1] The Hodgkin-Huxley model for an active neurite with input current $I_{e}(j, t)$ 
+    for a single cylindrical compartment $j$ is given by equations 1-12.
+    \begin{figure}[h!]
+        \centering
+        \includegraphics[width=1\textwidth]{Eqs.png}
+    \end{figure}\\
+    The electrical and geometrical properties are
+    \begin{itemize}
+        \item $C_{m} = 1 \, \mu \text{F}$, membrane capacitance
+        \item $E_{Na}=115 \, \text{mV}$, sodium equilibrium potential
+        \item $E_{K}=-12 \, \text{mV}$, potassium equilibrium potential
+        \item $E_{L}=10.6 \, \text{mV}$, leak equilibrium potential
+        \item $V(t=0)=0 \, \text{mV}$, initial (and equilibrium) membrane potential
+        \item $\bar{g}_{Na}=120 \, \text{mS}$, maximum sodium channel conductance
+        \item $\bar{g}_{K}=36 \, \text{mS}$, maximum potassium channel conductance
+        \item $g_{L}=0.3 \, \text{mS}$, leak conductance
+        \item $g_{ax}=0.5 \, \text{mS}$, axial conductance
+        \item $N=100$, number of compartments
+    \end{itemize}
+    Given the Hodgkin-Huxley model described above, we approximate the DEQs using the Forward Euler method and 
+    derive an equation for $V(j, t)$ for an arbitrary compartment $j$. We assume that the first compartment is 
+    terminated as a 'sealed end' and the last compartment is terminated as a 'killed end', as shown in Figure 1.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{Circuit_final.png}
+        \caption{Circuit diagram of a multi-compartment Hodgkin-Huxley model. Compartment 1 is terminated as a 'sealed end' and 
+        compartment N is terminated as a 'killed end'. Note that the connection between compartment 1 and compartment $j_{e}$ is not 
+        shown for simplicity.}
+    \end{figure}
+\end{enumerate}
+\end{document}
