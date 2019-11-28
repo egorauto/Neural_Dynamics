@@ -20,7 +20,7 @@
 \DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
 \setlength{\headheight}{15 pt}
 \lhead{Georgy Antonov}
-\chead{HW 3}
+\chead{HW 5}
 \rhead{Neural Dynamics}
 
 \begin{document}\noindent
@@ -57,5 +57,30 @@
         compartment N is terminated as a 'killed end'. Note that the connection between compartment 1 and compartment $j_{e}$ is not 
         shown for simplicity.}
     \end{figure}
+    \newline The approximated DEQ for voltage response of compartment $j$ into which current is injected looks as shown below
+    \begin{align*}
+        V'_{j}(t + \Delta t) = V'_{j}(t) + \frac{\Delta t}{C_{m}}\left(I_{e}(t) \right. &+ g_{L}\left(E_{L}-V'_{j}(t)\right) + \bar{g}_{Na}m^{3}_{j}(t)h_{j}(t)\left(E_{Na}-V'_{j}(t)\right)\\
+                                                                                        &+ \bar{g}_{K}n^{4}_{j}(t)\left(E_{K}-V'_{j}(t)\right) + g_{ax}\left(V'_{j-1}(t)-V'_{j}(t)\right)\\
+                                                                                        &+ g_{ax} \left. \left(V'_{j+1}(t)-V'_{j}(t)\right)\right)
+    \end{align*}
+    Following Homework 4, voltage response for compartment $i$ where $0 < i < j$ is
+    \begin{align*}
+        V'_{i}(t + \Delta t) = V'_{i}(t) + \frac{\Delta t}{C_{m}}\left(\right. & g_{L}\left(E_{L}-V'_{i}(t)\right) + \bar{g}_{Na}m^{3}_{i}(t)h_{i}(t)\left(E_{Na}-V'_{i}(t)\right)\\
+                                                                                        &+ \bar{g}_{K}n^{4}_{i}(t)\left(E_{K}-V'_{i}(t)\right) + g_{ax}\left(V'_{i-1}(t)-V'_{i}(t)\right)\\
+                                                                                        &+ g_{ax} \left. \left(V'_{i+1}(t)-V'_{i}(t)\right)\right)
+    \end{align*}
+    As for compartment $i$ where $j < i < N$, we have
+    \begin{align*}
+        V'_{i}(t + \Delta t) = V'_{i}(t) + \frac{\Delta t}{C_{m}}\left(\right. & g_{L}\left(E_{L}-V'_{i}(t)\right) + \bar{g}_{Na}m^{3}_{i}(t)h_{i}(t)\left(E_{Na}-V'_{i}(t)\right)\\
+                                                                                        &+ \bar{g}_{K}n^{4}_{i}(t)\left(E_{K}-V'_{i}(t)\right) + g_{ax}\left(V'_{i+1}(t)-V'_{i}(t)\right)\\
+                                                                                        &+ g_{ax} \left. \left(V'_{i-1}(t)-V'_{i}(t)\right)\right)
+    \end{align*}
+    As regards the termini, membrane potential for compartment $j=N$ is set to 0 and for compartment $j=1$ we assume no axial current flowing out, and hence all membrane potential difference is due to 
+    current flowing through the membrane
+    \begin{align*}
+        V'_{1}(t + \Delta t) = V'_{1}(t) + \frac{\Delta t}{C_{m}}\left(\right. g_{ax}\left(V'_{2}(t)-V'_{1}(t)\right) &+ g_{L}\left(E_{L}-V'_{1}(t)\right) + \bar{g}_{Na}m^{3}_{1}(t)h_{1}(t)\left(E_{Na}-V'_{1}(t)\right)\\
+                                                                                        &+ \bar{g}_{K}n^{4}_{1}(t)\left(E_{K}-V'_{1}(t)\right)
+    \end{align*}
+    For the approximations of $m, h, n$ gating variables please refer to Homework 4.
 \end{enumerate}
 \end{document}
