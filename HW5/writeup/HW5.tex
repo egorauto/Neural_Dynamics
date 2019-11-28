@@ -78,9 +78,41 @@
     As regards the termini, membrane potential for compartment $j=N$ is set to 0 and for compartment $j=1$ we assume no axial current flowing out, and hence all membrane potential difference is due to 
     current flowing through the membrane
     \begin{align*}
-        V'_{1}(t + \Delta t) = V'_{1}(t) + \frac{\Delta t}{C_{m}}\left(\right. g_{ax}\left(V'_{2}(t)-V'_{1}(t)\right) &+ g_{L}\left(E_{L}-V'_{1}(t)\right) + \bar{g}_{Na}m^{3}_{1}(t)h_{1}(t)\left(E_{Na}-V'_{1}(t)\right)\\
-                                                                                        &+ \bar{g}_{K}n^{4}_{1}(t)\left(E_{K}-V'_{1}(t)\right)
+        V'_{1}(t + \Delta t) = V'_{1}(t) + \frac{\Delta t}{C_{m}}\left(\right.  &+ g_{L}\left(E_{L}-V'_{1}(t)\right) + \bar{g}_{Na}m^{3}_{1}(t)h_{1}(t)\left(E_{Na}-V'_{1}(t)\right)\\
+                                                                                &+ \bar{g}_{K}n^{4}_{1}(t)\left.\left(E_{K}-V'_{1}(t)\right) + g_{ax}\left(V'_{2}(t)-V'_{1}(t)\right)\right)
     \end{align*}
     For the approximations of $m, h, n$ gating variables please refer to Homework 4.
+    \item[1.2] Now, we turn on simulating the above model for an input current $I_{e}(j,t)$
+    \[
+        I_{e}(j, t)= 
+        \begin{cases}
+            0, & (t < t_{e}) \vee (t_{s} \leqslant t) \vee (j \neq j_{e})\\
+            I_{0}, & (t_{e} \leqslant t < t_{s}) \wedge (j = j_{e})\\
+        \end{cases}
+    \]
+    with $j_{e}=14$, $t_{e}=60 \, \text{ms}$, $t_{s}=260 \, \text{ms}$ and different amplitudes
+    $I_{0}=6 \, \mu \text{A}$, $I_{0}=8 \, \mu \text{A}$, $I_{0}=15 \, \mu \text{A}$, and $I_{0}=20 \, \mu \text{A}$.
+    The results of this simulation appear in Figures 2, 3, 4, 5.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{6A.png}
+        \caption{Voltage response to $I_{e}(14,t)$ of $6 \, \mu \text{A}$ amplitude.}
+    \end{figure}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{8A.png}
+        \caption{Voltage response to $I_{e}(14,t)$ of $8 \, \mu \text{A}$ amplitude.}
+    \end{figure}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{15A.png}
+        \caption{Voltage response to $I_{e}(14,t)$ of $15 \, \mu \text{A}$ amplitude. Note the 
+        second wave of spikes.}
+    \end{figure}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=1\textwidth]{20A.png}
+        \caption{Voltage response to $I_{e}(14,t)$ of $20 \, \mu \text{A}$ amplitude.}
+    \end{figure}
 \end{enumerate}
 \end{document}
