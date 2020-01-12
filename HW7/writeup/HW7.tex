@@ -178,4 +178,23 @@ Thus, the function is Lyapunov for $s=3/4$ when $u_{0} \in (-0.25, +\infty)$.\\
 \\
 Also observe that the left hand side of the condition is at maximum when $u_{1}=u_{2}=0$. Hence, for the condition to be fulfilled, we require $s<1$.
 \end{enumerate}
+\newpage
+\noindent\textbf{Question 2. Simple autoassociative memory.}
+\begin{enumerate}
+\item[2.1] Assume an autoassociative memory network given by
+\[
+    \tau \mathbf{\dot u}(t) = -\mathbf{u}(t) + [\mathbf{Mu}(t)]_{+}
+\]  
+where matrix $\mathbf{M}$ is 
+\[
+\mathbf{M}=\begin{pmatrix}1 & -0.1 & -0.1\\ -0.1 & 1 & -0.1\\ -0.1 & -0.1 & 1\end{pmatrix}  
+\]
+We are required to find an equation which determines the stationary points of the network. Similarly to Question 1, 
+the stationary points are described by the intersections of isoclines. Therefore, we solve
+\begin{align*}
+    \frac{du_{1}}{dt} &= 0 \implies u_{1}=[u_{1} -0.1u_{2}-0.1u_{3}]_{+}\\
+    \frac{du_{2}}{dt} &= 0 \implies u_{2}=[-0.1u_{1} +u_{2}-0.1u_{3}]_{+}\\
+    \frac{du_{3}}{dt} &= 0 \implies u_{3}=[-0.1u_{1} -0.1u_{2}+u_{3}]_{+}
+\end{align*}
+\end{enumerate}
 \end{document}
