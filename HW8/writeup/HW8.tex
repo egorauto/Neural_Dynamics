@@ -1,0 +1,135 @@
+\documentclass[12pt]{article}
+\usepackage{amssymb,mathtools, systeme}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{circuitikz}
+\usepackage{graphicx}
+\graphicspath{ {./Figures/} }
+\usepackage{amsmath}
+\usepackage{ragged2e}
+\usepackage{subcaption} 
+\usepackage{float}
+\usepackage{cancel}
+\usepackage{siunitx}
+\pagestyle{fancy}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+\newcommand*{\permcomb}[4][0mu]{{{}^{#3}\mkern#1#2_{#4}}}
+\newcommand*{\Comb}[2]{{}^{#1}C_{#2}}%
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\setlength{\headheight}{15 pt}
+\lhead{Georgy Antonov}
+\chead{HW 8}
+\rhead{Neural Dynamics}
+
+\begin{document}\noindent
+
+
+\noindent\textbf{Question 1. Linear Neural Field.}
+\begin{enumerate}
+\item[1.1] We are given the following linear neural field
+\begin{equation}
+    \tau \dot{u}(x, t) =   -u(x, t) + \int_{-\infty}^{+\infty}w(x-x')u(x', t)dx' + s(x, t)
+\end{equation}
+We assume that the input signal is constant over time and is given by 
+\begin{equation}
+    s(x) = \text{exp}\left(-\frac{x^2}{4d^2}\right)/(2d\sqrt{\pi})
+\end{equation}
+and that the interaction kernel is given by the Gabor funciton
+\begin{equation}
+    w(x) = a\left(\text{exp}\left(-\frac{x^2}{4b^2}\right)\text{cos}(k_{0}x)\right)/(b\sqrt{\pi})
+\end{equation}
+Note that equation 1 is a partial integro-differential equation. To solve it, we begin by transforming it in $x$ to the 
+frequency domain using the Fourier Transform $\mathcal{F}$
+\[
+    \tau \frac{d\widetilde{u}(\omega, t)}{dt} = -\widetilde{u}(\omega, t) + \widetilde{w}(\omega)\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
+\]
+and after rearranging we get
+\[
+    \tau \frac{d\widetilde{u}(\omega, t)}{dt} = (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
+\]
+This is now a linear inhomogeneous ODE in the Fourier domain. If we further assume that the system has a stable solution that does not depend on time,
+we get
+\[
+    \frac{d\widetilde{u}(\omega)}{dt} = 0 \implies (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega) + \widetilde{s}(\omega) = 0
+\]
+Therefore, we obtain the solution in the Fourier domain
+\[
+    \widetilde{u}(\omega, \infty) = \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)}
+\]
+\item[1.2] Note that both the interaction kernel and input terms are Gaussians, and hence their Fourier Transforms are 
+\[
+    \widetilde{s}(\omega) = \mathcal{F}[s](\omega) =  \frac{\text{exp}(-1/4d^{2}\omega^{2})}{2\sqrt{2\pi}}
+\]
+\begin{align*}
+    \widetilde{w}(\omega) = \mathcal{F}[w](\omega) &= a\sqrt{2}\,\text{exp}\left(-\frac{1}{2b^2}\right) \int_{-\infty}^{+\infty}\text{exp}\left(-\frac{x^2}{b\sqrt{2\pi}}\right)e^{-i\omega x}dx\int_{-\infty}^{+\infty}\text{cos}(k_{0}x)e^{-i\omega x}dx\\
+                           &= a\sqrt{2}\,\text{exp}\left(-\frac{1}{2b^2}\right)\text{exp}\left(\frac{-b^{2}\omega^{2}}{2}\right)\int_{-\infty}^{+\infty}\frac{e^{ik_{0}x}+e^{-ik_{0}x}}{2}e^{-i\omega x}dx\\
+                           &= a\sqrt{2}\,\text{exp}\left(-\frac{1}{2b^2}-\frac{b^{2}\omega^{2}}{2}\right)\left[\frac{1}{2}\delta(k_{0}-\omega) + \frac{1}{2}\delta(k_{0}+\omega)\right]
+\end{align*}
+\item[1.3] Now, to transform the solution back to the spatial domain we apply the inverse Fourier Transform $\mathcal{F}^{-1}$
+\[
+    u(x, \infty) = \int_{-\infty}^{+\infty} \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)} e^{i\omega x} d\omega 
+\]
+
+\item[1.4] Now, we simulate the neural field equation by approximating the integral as a Riemann sum
+\[
+    \int_{A}^{B}f(x)dx \approx \sum_{i=1}^{N} f(x_{i})\Delta x
+\]   
+with $x_{i} = A + i\Delta x$ and $\Delta x=(B-A)/N$. Thus, we now have
+\[
+    \tau \dot{u}(x, t) =   -u(x, t) + \sum_{i=1}^{N} w(x-x_{i}')u(x_{i}', t)\Delta x' + s(x, t)
+\]
+We also need to make use of the Forward Euler method to approximate the derivative. Therefore, we finally obtain
+
+\[
+    u(x, t+\Delta t) =  u(x, t) + \frac{\Delta t}{\tau}\left(-u(x, t) + \sum_{i=1}^{N} w(x-x_{i}')u(x_{i}', t)\Delta x' + s(x, t)\right)
+\]
+
+The simulation parameters are as follows
+\begin{itemize}
+    \item $A = 10$
+    \item $B = -10$
+    \item $N \geq 200$
+    \item $\tau = 10$
+    \item $a = 1$
+    \item $b=0.6$
+    \item $d=2$
+    \item $k_{0}=4$
+\end{itemize}
+\item[1.5] We can define a Green's function $g(x, t)$ for the neural field that describes its response to a delta input signal of the form $s(x,t) = \delta(x)\delta(t)$. 
+ If the function is know, then the response of the filed to $s(x, t)$ is characterised by
+ \[
+    u(x, t) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x-x', t-t')s(x', t')dx'dt'
+ \]
+Note that we can apply a 2D Fourier Transform to the above equation (i.e. transform both space and time) to obtain $\mathcal{F}[g](k, \omega)$.
+First, we transorm the spatial domain (using the convolution theorem)
+\[
+    \widetilde{u}(k, t) = \int_{-\infty}^{+\infty} \widetilde{g}(k, t-t')\widetilde{s}(k, t')dt'
+\]
+Now, we transform the temporal domain, again applying the convolution theorem
+\[
+    \mathcal{F}[\tilde{u}](k, \omega) = \mathcal{F}[\tilde{g}](k, \omega)\mathcal{F}[\tilde{s}](k, \omega)
+\]
+Hence, the 2D Fourier Transform of the Green's function of our neural field is
+\[
+    \mathcal{F}[\tilde{g}](k, \omega) = \frac{\mathcal{F}[\tilde{u}](k, \omega)}{\mathcal{F}[\tilde{s}](k, \omega)}
+\]
+\item[1.6] We now assume a different interaction kernel $w(x)$ given by
+\[
+    w(x) = e^{-c|x|}\text{sign}(x)  
+\] 
+where $c>0$ and a time-dependent stimulus of the form
+\[
+    s(x, t) = c\,\text{exp}\left(-\frac{(x-vt)^{2}}{4d_{1}^{2}}\right)/(2d_{1}\sqrt{\pi})
+\]
+where $v$ is the stimulus peak travelling speed.
+\end{enumerate}
+\end{document}
