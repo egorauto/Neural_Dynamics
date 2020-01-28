@@ -11,6 +11,7 @@
 \usepackage{float}
 \usepackage{cancel}
 \usepackage{siunitx}
+\usepackage{bbm}
 \pagestyle{fancy}
 \usepackage[shortlabels]{enumitem}
 \usepackage{mathtools}
@@ -37,7 +38,7 @@
 \begin{enumerate}
 \item[1.1] We are given the following linear neural field
 \begin{equation}
-    \tau \dot{u}(x, t) =   -u(x, t) + \int_{-\infty}^{+\infty}w(x-x')u(x', t)dx' + s(x, t)
+    \tau \dot{u}(x, t) =   -u(x, t) + \int_{-\infty}^{\infty}w(x-x')u(x', t)dx' + s(x, t)
 \end{equation}
 We assume that the input signal is constant over time and is given by 
 \begin{equation}
@@ -70,27 +71,26 @@ Therefore, we obtain the solution in the Fourier domain
     \widetilde{s}(\omega) = \mathcal{F}[s](\omega) =  \frac{\text{exp}(-1/4d^{2}\omega^{2})}{2\sqrt{2\pi}}
 \]
 \begin{align*}
-    \widetilde{w}(\omega) = \mathcal{F}[w](\omega) &= a\sqrt{2}\,\text{exp}\left(-\frac{1}{2b^2}\right) \int_{-\infty}^{+\infty}\text{exp}\left(-\frac{x^2}{b\sqrt{2\pi}}\right)e^{-i\omega x}dx\int_{-\infty}^{+\infty}\text{cos}(k_{0}x)e^{-i\omega x}dx\\
-                           &= a\sqrt{2}\,\text{exp}\left(-\frac{1}{2b^2}\right)\text{exp}\left(\frac{-b^{2}\omega^{2}}{2}\right)\int_{-\infty}^{+\infty}\frac{e^{ik_{0}x}+e^{-ik_{0}x}}{2}e^{-i\omega x}dx\\
-                           &= a\sqrt{2}\,\text{exp}\left(-\frac{1}{2b^2}-\frac{b^{2}\omega^{2}}{2}\right)\left[\frac{1}{2}\delta(k_{0}-\omega) + \frac{1}{2}\delta(k_{0}+\omega)\right]
+    \widetilde{w}(\omega) = \mathcal{F}[w](\omega) &= \frac{a}{b\sqrt{\pi}}\int_{-\infty}^{\infty}\text{exp}\left(-\frac{x^2}{4b^{2}}\right)\text{cos}(k_{0}x)e^{-i\omega x}dx\\
+                           &= \frac{a}{b\sqrt{\pi}}\int_{-\infty}^{\infty}\text{exp}\left(-\frac{x^2}{4b^{2}}\right)\frac{e^{ik_{0}x}+e^{-ik_{0}x}}{2}e^{-i\omega x}dx
 \end{align*}
 \item[1.3] Now, to transform the solution back to the spatial domain we apply the inverse Fourier Transform $\mathcal{F}^{-1}$
 \[
-    u(x, \infty) = \int_{-\infty}^{+\infty} \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)} e^{i\omega x} d\omega 
+    u(x, \infty) = \mathcal{F}^{-1}[u](\omega, \infty) = \int_{-\infty}^{\infty} \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)} e^{i\omega x} d\omega 
 \]
 
 \item[1.4] Now, we simulate the neural field equation by approximating the integral as a Riemann sum
 \[
-    \int_{A}^{B}f(x)dx \approx \sum_{i=1}^{N} f(x_{i})\Delta x
+    \int_{A}^{B}f(x)dx \approx \sum_{i=0}^{N} f(x_{i})\Delta x
 \]   
 with $x_{i} = A + i\Delta x$ and $\Delta x=(B-A)/N$. Thus, we now have
 \[
-    \tau \dot{u}(x, t) =   -u(x, t) + \sum_{i=1}^{N} w(x-x_{i}')u(x_{i}', t)\Delta x' + s(x, t)
+    \tau \dot{u}(x, t) =   -u(x, t) + \sum_{i=0}^{N} \big[ w(x-x_{i})u(x_{i}, t)\Delta x \big] + s(x, t)
 \]
 We also need to make use of the Forward Euler method to approximate the derivative. Therefore, we finally obtain
 
 \[
-    u(x, t+\Delta t) =  u(x, t) + \frac{\Delta t}{\tau}\left(-u(x, t) + \sum_{i=1}^{N} w(x-x_{i}')u(x_{i}', t)\Delta x' + s(x, t)\right)
+    u(x, t+\Delta t) =  u(x, t) + \frac{\Delta t}{\tau}\left(-u(x, t) + \sum_{i=0}^{N} \big[ w(x-x_{i})u(x_{i}, t)\Delta x \big] + s(x, t)\right)
 \]
 
 The simulation parameters are as follows
@@ -104,15 +104,45 @@ The simulation parameters are as follows
     \item $d=2$
     \item $k_{0}=4$
 \end{itemize}
+The result of the simulation appears in Figure 1.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure1.png}
+    \caption{Dynamics of the linear neural field defined by equation 1.}
+\end{figure}
+We can also add a small amount of Gaussian noise to the input signal. This result is shown in Figure 2 for $\sigma^{2}(s(x))=0.01^2$.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure2.png}
+    \caption{Same as in Fig. 1 but with added Gaussian noise.}
+\end{figure}
+Now, let us change the interaction kernel parameter $a$ keeping the same noise level as before. The results for $a=0.7$
+and $a=1.5$ appear in Figures 3 \& 4, repsectively.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure3.png}
+    \caption{Same as in Fig. 1 but with added Gaussian noise and $a=0.7$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure4.png}
+    \caption{Same as in Fig. 1 but with added Gaussian noise and $a=1.5$.}
+\end{figure}
+Finally, let us discard the noise and keep $a=1$ but now we set $k=8$. This result is shown in figure 5.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure5.png}
+    \caption{Same as in Fig. 1 but with $k=8$.}
+\end{figure}
 \item[1.5] We can define a Green's function $g(x, t)$ for the neural field that describes its response to a delta input signal of the form $s(x,t) = \delta(x)\delta(t)$. 
  If the function is know, then the response of the filed to $s(x, t)$ is characterised by
  \[
-    u(x, t) = \int_{-\infty}^{+\infty} \int_{-\infty}^{+\infty} g(x-x', t-t')s(x', t')dx'dt'
+    u(x, t) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x-x', t-t')s(x', t')dx'dt'
  \]
 Note that we can apply a 2D Fourier Transform to the above equation (i.e. transform both space and time) to obtain $\mathcal{F}[g](k, \omega)$.
 First, we transorm the spatial domain (using the convolution theorem)
 \[
-    \widetilde{u}(k, t) = \int_{-\infty}^{+\infty} \widetilde{g}(k, t-t')\widetilde{s}(k, t')dt'
+    \widetilde{u}(k, t) = \int_{-\infty}^{\infty} \widetilde{g}(k, t-t')\widetilde{s}(k, t')dt'
 \]
 Now, we transform the temporal domain, again applying the convolution theorem
 \[
@@ -130,6 +160,148 @@ where $c>0$ and a time-dependent stimulus of the form
 \[
     s(x, t) = c\,\text{exp}\left(-\frac{(x-vt)^{2}}{4d_{1}^{2}}\right)/(2d_{1}\sqrt{\pi})
 \]
-where $v$ is the stimulus peak travelling speed.
+where $v$ is the stimulus peak travelling speed. We run the simulation with the following parameters
+\begin{itemize}
+    \item $c=1$
+    \item $d_{1}=0.5$
+    \item $v=0.1$
+\end{itemize}
+The result is reported in Figure 6.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure6.png}
+    \caption{Linear neural field dynamics with different interaction kernel and input.}
+\end{figure}
+Now, if we change the stimulus travelling speed to $v=-0.1$, we yeild what is shown in Figure 7.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure7.png}
+    \caption{Same as in Fig. 6 but a negative stimulus speed.}
+\end{figure}
+\item[1.7] We are required to compute the optimal input speed that leads to the highest output amplitude in the field.
+\end{enumerate}
+
+\newpage
+\noindent\textbf{Question 2. Noninear Neural Field.}
+\begin{enumerate}
+\item[2.1] We are given a neural field of Amari type which is described by the following equation
+\begin{equation}
+    \tau \dot{u}(x, t) =   -u(x, t) + \int_{-\infty}^{\infty}w(x-x')\mathbbm{1}[u(x', t)]dx' + s(x, t) - h
+\end{equation}
+We assume the resting level parameter, $h=1$, and that both the input and recurrent interaction kernel are given by the 
+following piecewise linear functions
+\[
+    s(x)=\begin{cases}
+        C(1-|x|/d), & |x| \leq d\\
+        0, & \text{otherwise}
+    \end{cases}  
+\]
+\[
+    w(x)=\begin{cases}
+        A, & |x| \leq a\\
+        -B, & a \leq |x| \leq b\\
+        0, & \text{otherwise}
+    \end{cases} 
+\]
+To simulate this neural field, similarly to Question 1, we use the Forward Euler approximation and we also 
+express the convolution integral as a Riemann sum
+\[
+    \dot{u}(x, t+\Delta t) = u(x, t) + \frac{\Delta t}{\tau}\left(-u(x, t) + \sum_{i=0}^{N}\big[ w(x-x_{i})\mathbbm{1}[u(x_{i}, t)]\Delta x \big] + s(x, t) - h\right)
+\]
+Initially, we use the following parameters
+\begin{itemize}
+    \item $A=3$
+    \item $B=2$
+    \item $C=0.6$
+    \item $a=1$
+    \item $b=3$
+    \item $d=4$
+    \item $h=1$
+\end{itemize}
+The result of the simulation with the initial condition $u(x, 0)=-h$ is shown in Figure 8.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure8.png}
+    \caption{Dynamics of the nonlinear neural field defined by equation 4.}
+\end{figure}
+Now, we run another simulation but this time with a different initial condition, $u(x, 0)=3.3s(x)-h$. This simulation appears in Figure 9.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure9.png}
+    \caption{Same as in Figure 8 but with the initial condition $u(x, 0)=3.3s(x)-h$.}
+\end{figure}
+Finally, we reduce the strength of the interaction kernel by one order of magnitude and run the simulation again with the remaining parameters as before.
+This simulation result is shown in Figure 10.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure10.png}
+    \caption{Same as in Figure 9 but with the interaction kernel $w(x)$ weakend by one order of magnitude.}
+\end{figure}
+\item[2.2] As can be clearly seen from Figure 8, we have a localised activation peak
+\[
+    u^{\star}(x)=\begin{cases}
+                \geq -h, & x_{1} \leq x \leq x_{2}\\
+                < -h, & \text{otherwise}
+            \end{cases} 
+\] 
+Hence, we can express the field dynamics within the peak by
+\[
+    \tau \frac{\partial u(x, t)}{\partial t} = -u(x, t) + \int_{x_{1}(t)}^{x_{2}(t)}w(x-x')dx' + s(x) - h
+\]
+
+% To analyse the stability of our spatially homogeneous solution, let us first assume no space dependence, i.e.
+% \[
+%     \tau \frac{du(t)}{dt} =   -u(t) + \int_{-\infty}^{\infty}w(x)\mathbbm{1}[u(t)]dx + s(t) - h
+% \] 
+% The equation can be further simplified to
+% \[
+%     \tau \frac{du(t)}{dt} =   -u(t) + \overline{w}(x)\mathbbm{1}[u(t)]dx + s(t) - h
+% \]
+% with 
+% \[
+%     \overline{w}(x) = \int w(x)dx
+% \]
+% This is now a simple DEQ. We can now employ the isocline analysis
+% \[
+%     \frac{du(t)}{dt} = 0 \implies \frac{h-s(t)+u(t)}{\overline{w}} = \mathbbm{1}[u(t)]
+% \]
+% Therefore, we obtain the fixed points
+% \[
+%     u_{0}(t)=\begin{cases}
+%         s(t) - h, & u(t) \leq 0\\
+%         {\overline{w}} + s(t) - h, & u(t) > 0
+%     \end{cases} 
+% \]
+% Now, we also need to account for spatial perturbations to the stationary points, for the system is spatially dependent. 
+% To do that, let us consider a small perturbation $\delta u(x, t)$ around the stationary solution $u(x) \equiv u_{0}$ which is 
+% given by linearisation
+% \[
+%     u(x, t)=u_{0}+\delta u(x, t)
+% \]
+% which implies the linearised dynamics 
+% \[
+%     \tau \frac{\partial \delta u(x, t)}{\partial t} = -\delta u(x, t) +   
+% \]
+\item[2.4] Now we simulate the same neural field with the initial condition $u(x, 0)=3.3s(x)-h$ and the initial interaction kernel;
+however, we set the input current to zero (but not for the initial condition). The result is shown in Figure 11. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure11.png}
+    \caption{Nonlinear neural field dynamics with the initial condition $u(x, 0)=3.3s(x)-h$ and the initial interaction kernel, but no input current.}
+\end{figure}
+\item[2.5] Finally, we run the simulatiom with the same conditions as above, except that now we add a non-symmetric interaction kernel to our previous kernel, i.e.
+effectively we have $w(x)+w_{u}(x)$, where
+\[
+    w_{u}(x)=\begin{cases}
+        0.8x, & |x| \leq b\\
+        0, & \text{otherwise}
+    \end{cases} 
+\] 
+The emerging solution appears in Figure 12.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{./figure12.png}
+    \caption{Nonlinear neural field dynamics with the initial condition $u(x, 0)=3.3s(x)-h$ and the interaction kernel $w(x)+w_{u}(x)$.}
+\end{figure}
 \end{enumerate}
 \end{document}
