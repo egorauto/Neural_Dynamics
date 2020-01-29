@@ -51,16 +51,20 @@ and that the interaction kernel is given by the Gabor funciton
 Note that equation 1 is a partial integro-differential equation. To solve it, we begin by transforming it in $x$ 
 using the Fourier transform $\mathcal{F}$ which yeilds
 \[
-    i \tau \omega \widetilde{u}(\omega, t) = -\widetilde{u}(\omega, t) + \widetilde{w}(\omega)\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
+    \frac{d\widetilde{u}_{n}(\omega, t)}{dt} = -\widetilde{u}(\omega, t) + \widetilde{w}(\omega)\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
 \]
 where we have used the derivative and convolution properties of the Fourier transform. After rearranging, we get
 \[
-    i\tau \omega \widetilde{u}(\omega, t) = (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
+    \frac{d\widetilde{u}_{n}(\omega, t)}{dt} = (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
 \]
+This is now a system of decoupled non-autonomous linear DEQs for each Fourier mode. The solution for constant input follows from
 \[
-    \widetilde{u}(\omega, t) = \frac{\widetilde{s}(\omega)}{i\tau \omega + 1 - \widetilde{w}(\omega)}
+    \frac{d\widetilde{u}_{n}(\omega, t)}{dt} = 0 \implies \widetilde{u}_{n}(\omega, \infty) = \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)}
 \]
-Observe that the solution does not depend on time, for we have assumed above the the input current is constant in time.
+Which can be transformed back using a Fourier series expansion
+\[
+    u_{n}(x, \infty) = \sum_{-\infty}^{\infty}\frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)}e^{i\omega x}
+\]
 \item[1.2] Note that both the interaction kernel and input terms are Gaussians, and hence their Fourier transforms are 
 \[
     \widetilde{s}(\omega) = \mathcal{F}[s](\omega) =  \frac{\text{exp}(-1/4d^{2}\omega^{2})}{2\sqrt{2\pi}}
