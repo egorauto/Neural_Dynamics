@@ -48,25 +48,20 @@ and that the interaction kernel is given by the Gabor funciton
 \begin{equation}
     w(x) = a\left(\text{exp}\left(-\frac{x^2}{4b^2}\right)\text{cos}(k_{0}x)\right)/(b\sqrt{\pi})
 \end{equation}
-Note that equation 1 is a partial integro-differential equation. To solve it, we begin by transforming it in $x$ to the 
-frequency domain using the Fourier Transform $\mathcal{F}$
+Note that equation 1 is a partial integro-differential equation. To solve it, we begin by transforming it in $x$ 
+using the Fourier transform $\mathcal{F}$ which yeilds
 \[
-    \tau \frac{d\widetilde{u}(\omega, t)}{dt} = -\widetilde{u}(\omega, t) + \widetilde{w}(\omega)\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
+    i \tau \omega \widetilde{u}(\omega, t) = -\widetilde{u}(\omega, t) + \widetilde{w}(\omega)\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
 \]
-and after rearranging we get
+where we have used the derivative and convolution properties of the Fourier transform. After rearranging, we get
 \[
-    \tau \frac{d\widetilde{u}(\omega, t)}{dt} = (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
+    i\tau \omega \widetilde{u}(\omega, t) = (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega, t) + \widetilde{s}(\omega)
 \]
-This is now a linear inhomogeneous ODE in the Fourier domain. If we further assume that the system has a stable solution that does not depend on time,
-we get
 \[
-    \frac{d\widetilde{u}(\omega)}{dt} = 0 \implies (-1 + \widetilde{w}(\omega))\widetilde{u}(\omega) + \widetilde{s}(\omega) = 0
+    \widetilde{u}(\omega, t) = \frac{\widetilde{s}(\omega)}{i\tau \omega + 1 - \widetilde{w}(\omega)}
 \]
-Therefore, we obtain the solution in the Fourier domain
-\[
-    \widetilde{u}(\omega, \infty) = \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)}
-\]
-\item[1.2] Note that both the interaction kernel and input terms are Gaussians, and hence their Fourier Transforms are 
+Observe that the solution does not depend on time, for we have assumed above the the input current is constant in time.
+\item[1.2] Note that both the interaction kernel and input terms are Gaussians, and hence their Fourier transforms are 
 \[
     \widetilde{s}(\omega) = \mathcal{F}[s](\omega) =  \frac{\text{exp}(-1/4d^{2}\omega^{2})}{2\sqrt{2\pi}}
 \]
