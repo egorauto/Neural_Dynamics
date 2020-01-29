@@ -241,14 +241,55 @@ This simulation result is shown in Figure 10.
 \[
     u^{\star}(x)=\begin{cases}
                 \geq -h, & x_{1} \leq x \leq x_{2}\\
-                < -h, & \text{otherwise}
+                -h, & \text{otherwise}
             \end{cases} 
 \] 
 Hence, we can express the field dynamics within the peak by
 \[
     \tau \frac{\partial u(x, t)}{\partial t} = -u(x, t) + \int_{x_{1}(t)}^{x_{2}(t)}w(x-x')dx' + s(x) - h
 \]
-
+where $x_{1}(t)$ and $x_{2}(t)$ are time-dependent boundaries of the peak. We can further simplify this to
+\[
+    \tau \frac{\partial u(x, t)}{\partial t} = -u(x, t) - W(x-x_{2}(t)) + W(x-x_{1}(t)) + s(x) - h
+\]
+where 
+\[
+    W(x) = \int_{0}^{x}w(x')dx'
+\]
+Thus, our stationary solution is
+\[
+    u^{\star}(x) = W(x-x_{1}^{\star}(t)) - W(x-x_{2}^{\star}(t)) + s(x) - h
+\]
+At the boundaries of our excited region, we have $u^{\star}(x) = -1$. Hence, this implies the following system with $a=x_{2}-x_{1}$
+\begin{align*}
+   &- W(x_{1}^{\star}(t)-x_{1}^{\star}(t)) + W(x_{1}^{\star}(t)-x_{2}^{\star}(t)) = W(-a^{\star}) = s(x_{1}^{\star})-h\\
+   &- W(x_{2}^{\star}(t)-x_{1}^{\star}(t)) + W(x_{2}^{\star}(t)-x_{2}^{\star}(t)) = -W(a^{\star}) = s(x_{2}^{\star})-h
+\end{align*}
+For spatially constant input, the above equations are satisfied for the symmetric kernel which fulfills
+\[
+    W(a^{\star}) + s -h = 0
+\]
+Now, let us us employ the level-set method to analyse stability at the boundary points
+\[
+    u(x_{i}, t)=-1 \implies \frac{dx_{i}}{dt} = -\frac{\partial u(x_{i}, t)}{\partial t}/ \frac{\partial u(x_{i}, t)}{\partial x}  
+\]
+for $i \in \{1, 2\}$. Let us define
+\[
+ \gamma_{i} \doteq \frac{\partial}{\partial x} u(x_{i}, t)
+\]
+Substituting into the above we get
+\begin{align*}
+    \frac{dx_{1}}{dt} &= -\frac{1}{\tau \gamma_{1}}[-W(x_{1}(t)-x_{2}(t)) + s -h]\\
+    \frac{dx_{2}}{dt} &= -\frac{1}{\tau \gamma_{2}}[W(x_{2}(t)-x_{1}(t)) + s -h]  
+\end{align*}
+Note that if we subtract second equation from the first, we get
+\[
+    \frac{da}{dt} = \frac{1}{\tau}\left( \frac{1}{\gamma_{1}} - \frac{1}{\gamma_{2}} \right)[W(a(t))+s-h]
+\]
+Since the gamma-tau term is non-negative, this implies asymptotic stability for 
+\[
+    \frac{dW}{da}\bigg|_{a^{\star}} = w(a^{\star}) < 0
+\]
 % To analyse the stability of our spatially homogeneous solution, let us first assume no space dependence, i.e.
 % \[
 %     \tau \frac{du(t)}{dt} =   -u(t) + \int_{-\infty}^{\infty}w(x)\mathbbm{1}[u(t)]dx + s(t) - h
