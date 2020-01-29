@@ -72,13 +72,32 @@ Therefore, we obtain the solution in the Fourier domain
 \]
 \begin{align*}
     \widetilde{w}(\omega) = \mathcal{F}[w](\omega) &= \frac{a}{b\sqrt{\pi}}\int_{-\infty}^{\infty}\text{exp}\left(-\frac{x^2}{4b^{2}}\right)\text{cos}(k_{0}x)e^{-i\omega x}dx\\
-                           &= \frac{a}{b\sqrt{\pi}}\int_{-\infty}^{\infty}\text{exp}\left(-\frac{x^2}{4b^{2}}\right)\frac{e^{ik_{0}x}+e^{-ik_{0}x}}{2}e^{-i\omega x}dx
+                           &= \frac{a}{2b\sqrt{\pi}}\int_{-\infty}^{\infty}\text{exp}\left(-\frac{x^2}{4b^{2}}\right)(e^{ik_{0}x}+e^{-ik_{0}x})e^{-i\omega x}dx\\
+                           &= \frac{a}{2b\sqrt{\pi}}\left( \text{exp}\left(-\frac{(x-k_{0})^2}{4b^{2}}\right) + \text{exp}\left(-\frac{(x+k_{0})^2}{4b^{2}}\right)\right)
 \end{align*}
-\item[1.3] Now, to transform the solution back to the spatial domain we apply the inverse Fourier Transform $\mathcal{F}^{-1}$
-\[
-    u(x, \infty) = \mathcal{F}^{-1}[u](\omega, \infty) = \int_{-\infty}^{\infty} \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)} e^{i\omega x} d\omega 
-\]
-
+\item[1.3] As can be seen for the kernel in the frequency domain, parameter $a$ controls the power at frequency $k_0$. Thus, in the original spatial domain, the $a$ parameter controls the interaction strength. 
+Plots of the kernel both in spatial and frequency domains are shown below. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./k8a1.png}
+    \caption{Interaction kernel in the spatial domain for $k=8$ and $a=1$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./a1.png}
+    \caption{Interaction kernel in the frequency domain for $k=8$ and $a=1$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./k8a8.png}
+    \caption{Interaction kernel in the spatial domain for $k=8$ and $a=8$.}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{./a8.png}
+    \caption{Interaction kernel in the frequency domain for $k=8$ and $a=8$.}
+\end{figure}
+Therefore, for $a$ approaching 1 from below we would expect an increasing effect from nearby neurons in the field.
 \item[1.4] Now, we simulate the neural field equation by approximating the integral as a Riemann sum
 \[
     \int_{A}^{B}f(x)dx \approx \sum_{i=0}^{N} f(x_{i})\Delta x
@@ -104,34 +123,37 @@ The simulation parameters are as follows
     \item $d=2$
     \item $k_{0}=4$
 \end{itemize}
-The result of the simulation appears in Figure 1.
+The result of the simulation appears in Figure 5. We can see a stationary solution emerging as a localised peak of activity centred at $x=0$.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure1.png}
+    \includegraphics[width=0.9\textwidth]{./figure5.png}
     \caption{Dynamics of the linear neural field defined by equation 1.}
 \end{figure}
-We can also add a small amount of Gaussian noise to the input signal. This result is shown in Figure 2 for $\sigma^{2}(s(x))=0.01^2$.
+We can also add a small amount of Gaussian noise to the input signal. This result is shown in Figure 6 for $\sigma^{2}(s(x))=0.01^2$.
+With the noise added, the solution remains stable albeit with minor perturbations.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure2.png}
+    \includegraphics[width=0.9\textwidth]{./figure6.png}
     \caption{Same as in Fig. 1 but with added Gaussian noise.}
 \end{figure}
 Now, let us change the interaction kernel parameter $a$ keeping the same noise level as before. The results for $a=0.7$
-and $a=1.5$ appear in Figures 3 \& 4, repsectively.
+and $a=1.5$ appear in Figures 7 \& 8, repsectively. It can be clearly seen that the $a$ parameter influences the system's 
+sensitivity to noise. With a higher value of $a$, the solution looks noisier. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure3.png}
+    \includegraphics[width=0.9\textwidth]{./figure7.png}
     \caption{Same as in Fig. 1 but with added Gaussian noise and $a=0.7$.}
 \end{figure}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure4.png}
+    \includegraphics[width=0.9\textwidth]{./figure8.png}
     \caption{Same as in Fig. 1 but with added Gaussian noise and $a=1.5$.}
 \end{figure}
-Finally, let us discard the noise and keep $a=1$ but now we set $k=8$. This result is shown in figure 5.
+Finally, let us discard the noise and keep $a=1$ but now we set $k=8$. This result is shown in figure 9. A higher value of $k$ stretches the solution upwards. With even 
+increasing k, the peak becomes higher and boundaries get narrower. This is because k controls the kernel width.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure5.png}
+    \includegraphics[width=0.9\textwidth]{./figure9.png}
     \caption{Same as in Fig. 1 but with $k=8$.}
 \end{figure}
 \item[1.5] We can define a Green's function $g(x, t)$ for the neural field that describes its response to a delta input signal of the form $s(x,t) = \delta(x)\delta(t)$. 
@@ -166,19 +188,28 @@ where $v$ is the stimulus peak travelling speed. We run the simulation with the 
     \item $d_{1}=0.5$
     \item $v=0.1$
 \end{itemize}
-The result is reported in Figure 6.
+The result is reported in Figure 10.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure6.png}
+    \includegraphics[width=0.9\textwidth]{./figure10.png}
     \caption{Linear neural field dynamics with different interaction kernel and input.}
 \end{figure}
-Now, if we change the stimulus travelling speed to $v=-0.1$, we yeild what is shown in Figure 7.
+Now, if we change the stimulus travelling speed to $v=-0.1$, we yeild what is shown in Figure 11.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure7.png}
+    \includegraphics[width=0.9\textwidth]{./figure11.png}
     \caption{Same as in Fig. 6 but a negative stimulus speed.}
 \end{figure}
-\item[1.7] We are required to compute the optimal input speed that leads to the highest output amplitude in the field.
+The solution turns, or changes it's direction depending on the input velocity. Hence, this implies potential direction selectivity for the neural field computations. 
+\item[1.7] We are required to compute the optimal input speed that leads to the highest output amplitude in the field assuming $|c| << k$.
+Recall that our solution in the Fourier domain is
+\[
+    \widetilde{u}(\omega, \infty) = \frac{\widetilde{s}(\omega)}{1 - \widetilde{w}(\omega)}  
+\] 
+This time, we also have
+\begin{align*}
+    \widetilde{w}(\omega) &= \mathcal{F}[w](\omega) = \frac{2i\omega}{c^{2}+\omega^{2}}
+\end{align*}
 \end{enumerate}
 
 \newpage
@@ -218,26 +249,29 @@ Initially, we use the following parameters
     \item $d=4$
     \item $h=1$
 \end{itemize}
-The result of the simulation with the initial condition $u(x, 0)=-h$ is shown in Figure 8.
+The result of the simulation with the initial condition $u(x, 0)=-h$ is shown in Figure 12.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure8.png}
+    \includegraphics[width=0.9\textwidth]{./figure12.png}
     \caption{Dynamics of the nonlinear neural field defined by equation 4.}
 \end{figure}
 Now, we run another simulation but this time with a different initial condition, $u(x, 0)=3.3s(x)-h$. This simulation appears in Figure 9.
+The apparent change can be explained by the fact that now our kernel starts to 'act' in all 3 modes given by the definition. Hence, we see 3 stable solutions.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure9.png}
-    \caption{Same as in Figure 8 but with the initial condition $u(x, 0)=3.3s(x)-h$.}
+    \includegraphics[width=0.9\textwidth]{./figure13.png}
+    \caption{Same as in Figure 12 but with the initial condition $u(x, 0)=3.3s(x)-h$.}
 \end{figure}
 Finally, we reduce the strength of the interaction kernel by one order of magnitude and run the simulation again with the remaining parameters as before.
-This simulation result is shown in Figure 10.
+This simulation result is shown in Figure 14.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure10.png}
-    \caption{Same as in Figure 9 but with the interaction kernel $w(x)$ weakend by one order of magnitude.}
+    \includegraphics[width=0.9\textwidth]{./figure14.png}
+    \caption{Same as in Figure 13 but with the interaction kernel $w(x)$ weakend by one order of magnitude.}
 \end{figure}
-\item[2.2] As can be clearly seen from Figure 8, we have a localised activation peak
+The stationary solution appears at a firing rate of $\approx 0.3$, which is $0.1w(x)$ for the initial condition 
+used in this simulation.
+\item[2.2] As can be clearly seen from Figure 12, we have a localised activation peak
 \[
     u^{\star}(x)=\begin{cases}
                 \geq -h, & x_{1} \leq x \leq x_{2}\\
@@ -324,10 +358,10 @@ Since the gamma-tau term is non-negative, this implies asymptotic stability for
 %     \tau \frac{\partial \delta u(x, t)}{\partial t} = -\delta u(x, t) +   
 % \]
 \item[2.4] Now we simulate the same neural field with the initial condition $u(x, 0)=3.3s(x)-h$ and the initial interaction kernel;
-however, we set the input current to zero (but not for the initial condition). The result is shown in Figure 11. 
+however, we set the input current to zero (but not for the initial condition). The result is shown in Figure 15. 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure11.png}
+    \includegraphics[width=0.9\textwidth]{./figure15.png}
     \caption{Nonlinear neural field dynamics with the initial condition $u(x, 0)=3.3s(x)-h$ and the initial interaction kernel, but no input current.}
 \end{figure}
 \item[2.5] Finally, we run the simulatiom with the same conditions as above, except that now we add a non-symmetric interaction kernel to our previous kernel, i.e.
@@ -338,10 +372,10 @@ effectively we have $w(x)+w_{u}(x)$, where
         0, & \text{otherwise}
     \end{cases} 
 \] 
-The emerging solution appears in Figure 12.
+The emerging solution appears in Figure 16.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{./figure12.png}
+    \includegraphics[width=0.9\textwidth]{./figure16.png}
     \caption{Nonlinear neural field dynamics with the initial condition $u(x, 0)=3.3s(x)-h$ and the interaction kernel $w(x)+w_{u}(x)$.}
 \end{figure}
 \end{enumerate}
